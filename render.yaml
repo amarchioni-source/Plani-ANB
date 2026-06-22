@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: anb-dashboard
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: ADMIN_PASSWORD
+        value: anb2024
+      - key: SECRET_KEY
+        generateValue: true
