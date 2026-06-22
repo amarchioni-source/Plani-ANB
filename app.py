@@ -21,7 +21,7 @@ FLAG_MAP = {
 }
 POOL_FLAG = {'China':'CN','MALAYSIA':'MY','PHILIPPINES':'PH','PERU':'PE'}
 SOLAPAS = ['ASADO','PECHO','R&L HILTON','R&L W','RUEDA']
-SKIP = {'Stock de cuartos','Producción','Produccion','Rechazos','Degradado a MB1','Pasado a MB1'}
+SKIP = {'Stock de cuartos','Rechazos','Degradado a MB1','Pasado a MB1'}
 POOL_IDS = {'China','MALAYSIA','PHILIPPINES','PERU','SALDO'}
 
 
@@ -78,7 +78,7 @@ def process_excel(path):
                     v = row[idx] if idx < len(row) else None
                     if isinstance(v,(int,float)) and v != 0:
                         gw[g].setdefault(current_week, {'p':0,'e':[]})['p'] += round(float(v))
-            elif str(concepto) in ('Producción','Produccion') and current_week:
+            elif concepto in ('Producción','Produccion') and current_week:
                 for g, idx in zip(genericos_mb1, idx_mb1):
                     v = row[idx] if idx < len(row) else None
                     if isinstance(v,(int,float)) and v != 0:
